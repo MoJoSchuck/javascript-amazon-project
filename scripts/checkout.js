@@ -147,6 +147,15 @@ document.querySelectorAll('.js-safe-link')
 
             updateCartQuantity();
         });
+        
+        const productId = link.dataset.productId;
+        const quantityInput = document.querySelector(`.js-quantity-input-${productId}`);
+        
+        quantityInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                link.click();
+            };
+        });
     });
 
 
