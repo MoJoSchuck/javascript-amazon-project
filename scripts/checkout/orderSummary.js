@@ -5,6 +5,7 @@ import { hello } from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
 import { renderPaymentSummary } from './payment.Summary.js';
+import { renderCheckoutHeader } from './checkoutHeader.js';
 
 export function renderOrderSummary() {
 
@@ -129,7 +130,7 @@ export function renderOrderSummary() {
                 const productId = link.dataset.productId;
                 removeFromCart(productId);
 
-               
+                renderCheckoutHeader();
                 renderOrderSummary();
                 renderPaymentSummary(); 
             });
@@ -150,13 +151,17 @@ export function renderOrderSummary() {
 
                 updateQuantity(productId, newQuantity);
 
-                const container = document.querySelector(`.js-cart-item-container-${productId}`);
-                container.classList.remove('is-editing-quantity');
+                renderCheckoutHeader();
+                renderOrderSummary();
+                renderPaymentSummary(); 
 
-                const quantityLabel = document.querySelector(`.js-quantity-label-${productId}`);
-                quantityLabel.innerHTML = newQuantity;
+                // const container = document.querySelector(`.js-cart-item-container-${productId}`);
+                // container.classList.remove('is-editing-quantity');
 
-                updateCartQuantity();
+                // const quantityLabel = document.querySelector(`.js-quantity-label-${productId}`);
+                // quantityLabel.innerHTML = newQuantity;
+
+                // updateCartQuantity();
             });
 
             const productId = link.dataset.productId;
@@ -170,14 +175,14 @@ export function renderOrderSummary() {
         });
 
 
-    function updateCartQuantity() {
-        const cartQuantity = calculateCartQuantity();
+    // function updateCartQuantity() {
+    //     const cartQuantity = calculateCartQuantity();
 
-        document.querySelector('.js-return-to-home-link')
-            .innerHTML = `${cartQuantity} items`;
-    }
+    //     document.querySelector('.js-return-to-home-link')
+    //         .innerHTML = `${cartQuantity} items`;
+    // }
 
-    updateCartQuantity();
+    // updateCartQuantity();
 
 
     document.querySelectorAll('.js-delivery-option')
