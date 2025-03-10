@@ -5,10 +5,20 @@ import { formatCurrency } from './utils/money.js';
 loadProducts(renderProductsGrid);
 
 function renderProductsGrid() {
-
     let productsHTML = '';
 
-    products.forEach((product) => {
+    const url = new URL(window.location.href);
+    const search = url.searchParams.get('search');
+
+    let filterdProducts = products
+
+    if (search) {
+        filterdProducts = products.filter((product) => {
+            return product.name.includes(search);
+        });
+    }
+
+    filterdProducts.forEach((product) => {
         productsHTML += `
     <div class="product-container">
           <div class="product-image-container">
@@ -82,4 +92,9 @@ function renderProductsGrid() {
                 updateCartQuantity();
             });
         });
+
+    document.querySelector('.js-search-button').addEventListener('click', () => {
+        const search = document.querySelector('.js-search-bar').value;
+        window.location.href = `amazon.html?search=${search}`;
+    });
 };
