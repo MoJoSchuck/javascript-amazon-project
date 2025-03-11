@@ -23,7 +23,7 @@ This project simulates a shopping process, including product search, cart manage
 
 ### 1️⃣ **Clone the Repository**
 ```sh
-git clone https://github.com/YOUR-GITHUB-USERNAME/YOUR-REPO-NAME.git
+git clone https://github.com/MoJoSchuck/javascript-amazon-project.git
 ```
 
 ### Web View
